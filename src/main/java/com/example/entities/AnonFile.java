@@ -18,12 +18,32 @@ public class AnonFile {
     @Column(nullable = false)
     String realFilename;
 
+    @Column(nullable = false)
+    String password;
+
+    @Column(nullable = false)
+    String comment;
+
     public AnonFile() {
     }
 
     public AnonFile(String originalFilename, String realFilename) {
         this.originalFilename = originalFilename;
         this.realFilename = realFilename;
+    }
+
+    public AnonFile(String originalFilename, String realFilename, String password) {
+        this.originalFilename = originalFilename;
+        this.realFilename = realFilename;
+        this.password = password;
+    }
+
+    public AnonFile(int id, String originalFilename, String realFilename, String password, String comment) {
+        this.id = id;
+        this.originalFilename = originalFilename;
+        this.realFilename = realFilename;
+        this.password = password;
+        this.comment = comment;
     }
 
     public int getId() {
@@ -48,5 +68,13 @@ public class AnonFile {
 
     public void setRealFilename(String realFilename) {
         this.realFilename = realFilename;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
