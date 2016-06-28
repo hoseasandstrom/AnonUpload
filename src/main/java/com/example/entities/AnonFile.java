@@ -18,31 +18,30 @@ public class AnonFile {
     @Column(nullable = false)
     String realFilename;
 
-    @Column(nullable = false)
+    //@Column(nullable = false) added if user wants to add it
     String password;
 
     @Column(nullable = false)
+    Boolean forever;
+
+    //@Column(nullable = false) this can be left out
     String comment;
 
     public AnonFile() {
     }
 
-    public AnonFile(String originalFilename, String realFilename) {
-        this.originalFilename = originalFilename;
-        this.realFilename = realFilename;
-    }
-
-    public AnonFile(String originalFilename, String realFilename, String password) {
+    public AnonFile(String originalFilename, String realFilename, String password, Boolean forever, String comment) {
         this.originalFilename = originalFilename;
         this.realFilename = realFilename;
         this.password = password;
+        this.forever = forever;
     }
 
-    public AnonFile(int id, String originalFilename, String realFilename, String password, String comment) {
-        this.id = id;
+    public AnonFile(String originalFilename, String realFilename, Boolean forever, String comment) {
         this.originalFilename = originalFilename;
         this.realFilename = realFilename;
         this.password = password;
+        this.forever = forever;
         this.comment = comment;
     }
 
@@ -76,5 +75,21 @@ public class AnonFile {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getForever() {
+        return forever;
+    }
+
+    public void setForever(Boolean forever) {
+        this.forever = forever;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }
