@@ -2,20 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Anon Upload</title>
 </head>
 <body>
-<form action="/upload" method="post" enctype="multipart/form-data">
-    <input type="file" name="file"/>
-    <input type="text" name="comment" placeholder="Insert comment"/>
-    <input type="checkbox" name="checkbox"/>
+<center><form action="/upload" method="post" enctype="multipart/form-data">
+    Select the Anon file you would like to upload<input type="file" name="file"/>
+    <br>
+    <br>
+    You can rename the file here:<input type="text" name="comment" placeholder="Enter new name"/>
+    <br>
+    <br>
+    Want to save this forever? (Check the box)<input type="checkbox" name="forever" value="forever"/>
+    <br>
+    <br>
+    If you would like to ensure that your file does not get deleted create a 'file password' here:<input type="password" name="password" placeholder="Enter password"/>
+    <br>
+    <br>
     <button type="submit">Submit</button>
-</form>
-<form action="/delete" method="post" style="display inline:block;">
-    <input type="hidden" name="id" value="{{id}}"/>
-    <button type="submit">Delete</button>
-    <input type="password" name="password" placeholder="Password"/>
-    </form>
+    <br>
+    <br>
+</form></center>
+<br>
+<br>
+<center><form action="/delete" method="post" style="display inline:block;">
+    <input type="hidden" name="fileId" placeholder="Enter Id"/>
+    <input type="text" name="checkPassword" placeholder="Enter Password"/>
+    <button type="submit">Delete</button>(Sure hope you can remember that password!)
+    </form></center>
 
 
 <div id="list"></div>
