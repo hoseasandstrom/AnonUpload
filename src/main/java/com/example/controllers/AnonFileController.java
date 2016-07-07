@@ -37,7 +37,7 @@ public class AnonFileController {
             forever = true;
         }
 
-        int count = (int) files.count();
+        int count = (int) files.countByForever(false);
         if (count < 10) {
 
             File dir = new File("public/files");
@@ -57,13 +57,18 @@ public class AnonFileController {
                 anonFile = new AnonFile(file.getOriginalFilename(), uploadedFile.getName(), PasswordStorage.createHash(password), forever, comment);
             } else {
                 anonFile = new AnonFile(file.getOriginalFilename(), uploadedFile.getName(), forever, comment);
+                files.save(anonFile);
             }
-            files.save(anonFile);
+
+
         } else {
             Iterable<AnonFile> fileList = files.findByForever(false);
             for (AnonFile f : fileList) {
-                int id = f.getId();
-                files.delete(id);
+                int least = 0;
+                AnonFile fileOnDatabase = files.findOne(least);
+                File fileOnDisk = new File("public/files/" + fileOnDatabase.getRealFilename());
+                fileOnDisk.delete();
+                files.delete(least);
             }
         }
         return "redirect:/";
